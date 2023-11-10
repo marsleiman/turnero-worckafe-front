@@ -15,6 +15,7 @@ const RegisterPage = (props) =>{
         }
         fetch("http://localhost:4000/api/usersCol/register",requestOptions)
         .then(response => {
+            console.log(response);
             if (!response.ok) {
                 throw new Error('La solicitud no fue exitosa');
             }
