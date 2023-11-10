@@ -3,7 +3,7 @@ const RegisterPage = (props) =>{
     const registerHandler = (event) => {
         event.preventDefault();
         const registro = {
-            username: event.target.userName.value,
+            name: event.target.name.value,
             email: event.target.email.value,
             password: event.target.password.value
         }
@@ -13,7 +13,7 @@ const RegisterPage = (props) =>{
             headers: {'Content-Type': 'application/jason'},
             body: JSON.stringify(registro)
         }
-        fetch("https://tp2-backend.azurewebsites.net/api/users/register",requestOptions)
+        fetch("http://localhost:4000/api/usersCol/register",requestOptions)
         .then(response => {
             if (!response.ok) {
                 throw new Error('La solicitud no fue exitosa');
@@ -29,6 +29,7 @@ const RegisterPage = (props) =>{
 return (    
     <div>
         <form onSubmit={registerHandler}>
+            <input type="name" name="name" placeholder="Name" /><br />
             <input type="email" name="email" placeholder="Email" /><br />
             <input type="password" name="password" placeholder="Password" /><br />
             <button type="submit">Register</button>

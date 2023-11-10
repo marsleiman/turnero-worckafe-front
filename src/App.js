@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from '../src/components/home/Home';
 import LoginPage from './components/user/LoginPage';
+import RegisterPage from './components/user/RegisterPage';
 import ReservasPage from './components/reservas/ReservasPage';
 
 function App() {
@@ -14,8 +15,8 @@ function App() {
           <Route path ="/home" element = {<Home />} />
           <Route path="/listado-reservas/" element = { <ReservasPage /> } />
           { /*<Route path="/crear-reserva" element = { <CreateReserva />} />
-          <Route path="/reserva/:reserva_id" element = {<ReservaDetails />} />
-          <Route path="/register" element = {<RegisterPage/>} /> */}
+          <Route path="/reserva/:reserva_id" element = {<ReservaDetails />} />*/
+          <Route path="/register" element = {<RegisterPage/>} /> }
         </Routes>
       </BrowserRouter>    
     );
