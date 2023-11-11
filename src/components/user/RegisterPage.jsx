@@ -10,7 +10,7 @@ const RegisterPage = (props) =>{
 
         const requestOptions = {
             method: "POST",
-            headers: {'Content-Type': 'application/jason'},
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(registro)
         }
         fetch("http://localhost:4000/api/usersCol/register",requestOptions)

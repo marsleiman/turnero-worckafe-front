@@ -5,6 +5,7 @@ import Home from '../src/components/home/Home';
 import LoginPage from './components/user/LoginPage';
 import RegisterPage from './components/user/RegisterPage';
 import ReservasPage from './components/reservas/ReservasPage';
+import AllUsers from './components/allUsers';
 
 function App() {
    
@@ -17,6 +18,7 @@ function App() {
           { /*<Route path="/crear-reserva" element = { <CreateReserva />} />
           <Route path="/reserva/:reserva_id" element = {<ReservaDetails />} />*/
           <Route path="/register" element = {<RegisterPage/>} /> }
+          <Route path="/allUsers" element = {<AllUsers/>} />
         </Routes>
       </BrowserRouter>    
     );

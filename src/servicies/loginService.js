@@ -1,8 +1,15 @@
 import React from 'react'
 
+
+
 const loginService = async (url, login) => {
   console.log('--------', login);
-  fetch("http://localhost:4000/api/usersCol/login/",login)
+  const requestOptions = {
+    method: "POST",
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(login)
+}
+  fetch("http://localhost:4000/api/usersCol/login/",requestOptions)
   .then(response => {
       console.log(response);
       if (!response.ok) {
@@ -11,20 +18,12 @@ const loginService = async (url, login) => {
       return response.text();
   })
   .then(data => {
-      console.log('Respuesta del servidor: ',data);
+        const newData = JSON.parse(data);
+        console.log("NewData", newData);
+        console.log("NewData", newData.token);
+      sessionStorage.setItem("Token", newData.token);
+      console.log("local storage", localStorage.getItem('Token'))
   })
-
-  // try {
-  //   const response = await fetch(url, login);
-  //   if (response.ok) {
-  //     const newData = await response.json();
-  //     console.log(newData);
-  //   } else {
-  //     console.error("Error al obtener datos");
-  //   }
-  // } catch (error) {
-  //   console.error("Error al obtener datos", error);
-  // }
 }
 
 export default loginService;
