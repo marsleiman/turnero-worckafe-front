@@ -1,6 +1,9 @@
 import React from 'react'
 
-
+const cookie = async (token) => {
+  await localStorage.setItem("token", token);
+  console.log('en la funcion cookie', token);
+}
 
 const loginService = async (url, login) => {
   console.log('--------', login);
@@ -21,8 +24,9 @@ const loginService = async (url, login) => {
         const newData = JSON.parse(data);
         console.log("NewData", newData);
         console.log("NewData", newData.token);
-      sessionStorage.setItem("Token", newData.token);
-      console.log("local storage", localStorage.getItem('Token'))
+        cookie(newData.token);
+        // sessionStorage.setItem("Token", newData.token);
+        console.log("local storage", localStorage.getItem('token'))
   })
 }
 
