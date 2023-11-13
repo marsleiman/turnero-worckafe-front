@@ -1,41 +1,56 @@
+import { useState } from "react";
+import registerService from "../../servicies/registerService";
+
 
 const RegisterPage = (props) =>{
-    const registerHandler = (event) => {
-        event.preventDefault();
-        const registro = {
-            name: event.target.name.value,
-            email: event.target.email.value,
-            password: event.target.password.value
-        }
 
-        const requestOptions = {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(registro)
-        }
-        fetch("http://localhost:4000/api/usersCol/register",requestOptions)
-        .then(response => {
-            console.log(response);
-            if (!response.ok) {
-                throw new Error('La solicitud no fue exitosa');
-            }
-            return response.text();
-        })
-        .then(data => {
-            console.log('Respuesta del servidor: ',data);
-        })
+    const [register, setRegister] = useState({
+        name: '',
+        email: '',
+        password: '',
+    })
 
+    const handleChange = (event) => {
+        setRegister((prevProps) => ({
+            ...prevProps,
+            [event.target.name]: event.target.value,
+        }));
+    }
+    const handleSubmit = (event) => {
+        // event.preventDefault();
+        // const url = 'http://localhost:4000/api/usersCol/'
+        // RegisterService(url, Register);
+    }
 
-    };
 return (    
-    <div>
-        <form onSubmit={registerHandler}>
-            <input type="name" name="name" placeholder="Name" /><br />
-            <input type="email" name="email" placeholder="Email" /><br />
-            <input type="password" name="password" placeholder="Password" /><br />
-            <button type="submit">Register</button>
-        </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+        <h2>Register</h2> <br />
+        <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={register.email}
+            onChange={handleChange}    
+        ></input>
+        <br />
+        <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={register.password}
+            onChange={handleChange}    
+        ></input>
+        <br />
+        <input
+            type="name"
+            name="name"
+            placeholder="Nombre"
+            value={register.name}
+            onChange={handleChange}    
+        ></input>
+        <br />
+        <button type="submit">Register</button>
+       </form>
     );
 }
 export default RegisterPage;

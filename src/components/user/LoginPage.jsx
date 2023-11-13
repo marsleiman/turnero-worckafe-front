@@ -1,12 +1,13 @@
 import { useState } from "react";
 import loginService from "../../servicies/loginService";
+
 const LoginPage = (props) => {
     const [login, setLogin] = useState({
         email: '',
         password: '',
     });
 
-    const handleChande = (event) => {
+    const handleChange = (event) => {
         setLogin((prevProps) => ({
             ...prevProps,
             [event.target.name]: event.target.value,
@@ -27,7 +28,7 @@ const LoginPage = (props) => {
             name="email"
             placeholder="Email"
             value={login.email}
-            onChange={handleChande}    
+            onChange={handleChange}    
         ></input>
         <br />
         <input
@@ -35,7 +36,7 @@ const LoginPage = (props) => {
             name="password"
             placeholder="Password"
             value={login.password}
-            onChange={handleChande}    
+            onChange={handleChange}    
         ></input>
         <br />
         <button type="submit">Login</button>
