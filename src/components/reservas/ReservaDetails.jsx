@@ -6,7 +6,7 @@ const ReservaDetails = (props) => {
     const [Reserva, setReserva] = useState({});
 
     useEffect(()=>{
-       fetch("https://raw.githubReservacontent.com/ORT-PabloFernandez/PNTP2-REACT-EJEMPLO/main/src/data/Reservas.json")
+       fetch()
             .then(response => response.json())
             .then(data => 
                     setReserva(data.find(Reserva => Reserva["Object Id"] === id))

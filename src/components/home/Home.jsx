@@ -1,13 +1,14 @@
-// import User from "../user/User";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import User from "../user/UserTest";
-
-export default function UserList(props) {
+const Home = () => {
     return (
-        <ul className="users-list">
-            <div>
-                <h1>{User.name}</h1>
-            </div>
-        </ul>
-    )
-}
+      <div>
+        <h1>Bienvenido!</h1>
+        <Link to="/login">Iniciar Sesión</Link>
+        <Link to="/register">Registrarse</Link>
+      </div>
+    );
+  };
+  
+  export default Home;
