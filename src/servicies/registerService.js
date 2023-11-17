@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const registerService = async (url, register) => {
+const registerService = async (register) => {
   console.log('--------', register);
   const requestOptions = {
     method: "POST",
@@ -12,7 +12,7 @@ const registerService = async (url, register) => {
   .then(response => {
       console.log(response);
       if (!response.ok) {
-          throw new Error('La solicitud no fue exitosa');
+          throw new Error('La solicitud no fue exitosa, register');
       }
       return response.text();
   })

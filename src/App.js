@@ -11,7 +11,7 @@ function App() {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element = {<LoginPage />} />
+          <Route path="/" element = {<Home />} />
           <Route path ="/login" element = {<LoginPage />} />
           <Route path="/listado-reservas/" element = { <ReservasPage /> } />
           { /*<Route path="/crear-reserva" element = { <CreateReserva />} />
