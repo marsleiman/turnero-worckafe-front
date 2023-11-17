@@ -1,9 +1,27 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { useNavigate, Link } from "react-router-dom";
 
 const Home = ({ title, subtitle, children, backgroundImage }) => {
+  const navigate = useNavigate();
+  const [cookie, setCookie] = useState(localStorage.getItem('token') || null)
+  // CUANDO SE CIERRA LA SESION??? por eso dejamo el setCookie
+  // SesionStorage o LocalStorage ?????
+  useEffect(() => {
+    if (cookie == '') {
+      navigate("/login");
+    }
+    console.log("local storage", localStorage.getItem('token'))
+  }, [cookie])
+
+  const handleCloseSesion = () => {
+    localStorage.removeItem('token');
+    setCookie(null)
+    navigate("/login");
+  }
+
   return (
     <section className="bg-[#fefae0] min-h-screen flex items-center justify-center">
+      <button onClick={handleCloseSesion}>Cerrar Sesión</button>
       <div className="bg-[#79B473] flex rounded-2xl shadow-lg max-w-3xl p-5">
         {/* login container */}
         <div className="md:w-1/2 px-12">
@@ -22,7 +40,7 @@ const Home = ({ title, subtitle, children, backgroundImage }) => {
         </div>
       </div>
     </section>
-  );
+  )
 };
 
 export default Home;

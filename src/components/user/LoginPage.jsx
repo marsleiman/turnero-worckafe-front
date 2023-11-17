@@ -1,13 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import Home from "../home/Home";
-import { Link } from "react-router-dom";
 import loginService from "../../servicies/loginService";
-
+import { useNavigate, Link } from "react-router-dom";
+import Home from '../home/Home'
 const LoginPage = (props) => {
+  const navigate = useNavigate();
   const [login, setLogin] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const handleChange = (event) => {
@@ -15,13 +15,13 @@ const LoginPage = (props) => {
       ...prevProps,
       [event.target.name]: event.target.value,
     }));
-  };
+  }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const url = "http://localhost:4000/api/usersCol/";
-    loginService(url, login);
-  };
+    await loginService(login);
+    navigate("/login");
+  }
 
   return (
     <Home

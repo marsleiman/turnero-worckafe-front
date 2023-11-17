@@ -1,9 +1,12 @@
 import { useState } from "react";
 import registerService from "../../servicies/registerService";
+import loginService from "../../servicies/loginService";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Home from "../home/Home";
 
 const RegisterPage = (props) => {
+  const navigate = useNavigate();
   const [register, setRegister] = useState({
     name: "",
     email: "",
@@ -16,23 +19,22 @@ const RegisterPage = (props) => {
       [event.target.name]: event.target.value,
     }));
   };
-  const handleSubmit = (event) => {
-    // event.preventDefault();
-    // const url = 'http://localhost:4000/api/usersCol/'
-    // RegisterService(url, Register);
-  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    await registerService(register)
+      .then(() => {
+        let body = {
+          email: register.email,
+          password: register.password,
+        }
+        loginService(body);
+        navigate("/");
+      })
+  }
 
   return (
-    <Home
-      title="Bienvenido"
-      subtitle="al work-café"
-      backgroundImage="/images/test2.jpeg"
-    >
-      <p class="text-sm mt-4 font-mono flex items-center justify-center">
-        {" "}
-        Ingrese sus datos
-      </p>
-
+    <Home>
       <form onSubmit={handleSubmit} class="flex flex-col gap-4">
         <input
           class="p-2 mt-8 font-mono rounded-xl border"
@@ -71,4 +73,5 @@ const RegisterPage = (props) => {
     </Home>
   );
 };
+
 export default RegisterPage;
