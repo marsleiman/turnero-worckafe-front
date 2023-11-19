@@ -22,6 +22,7 @@ const RegisterPage = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('llega?????');
     await registerService(register)
       .then(() => {
         let body = {
@@ -35,7 +36,7 @@ const RegisterPage = (props) => {
 
   return (
     <Home>
-      <form onSubmit={handleSubmit} class="flex flex-col gap-4">
+      <form class="flex flex-col gap-4">
         <input
           class="p-2 mt-8 font-mono rounded-xl border"
           type="name"
@@ -65,7 +66,7 @@ const RegisterPage = (props) => {
         {" "}
         <button
           class="bg-[#6F8F72] font-mono flex items-center justify-center rounded-xl py-2 hover:scale-105 duration-300"
-          type="submit"
+          onClick={handleSubmit}
         >
           Registrarme
         </button>
