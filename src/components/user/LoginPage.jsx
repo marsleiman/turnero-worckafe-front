@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import Home from "../home/Home";
 import loginService from "../../servicies/loginService";
 import { useNavigate, Link } from "react-router-dom";
-import Home from '../home/Home'
+
 const LoginPage = (props) => {
   const navigate = useNavigate();
   const [login, setLogin] = useState({
@@ -19,6 +20,7 @@ const LoginPage = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log('holaaaaaaaa');
     await loginService(login);
     navigate("/login");
   }
@@ -27,9 +29,8 @@ const LoginPage = (props) => {
     <Home
       title="Bienvenido"
       subtitle="al work-café"
-      backgroundImage="/images/test.jpeg"
-    >
-      <form onSubmit={handleSubmit} class="flex flex-col gap-4">
+      backgroundImage="/images/test.jpeg">
+      <form class="flex flex-col gap-4">
         <input
           className="p-2 mt-8 font-mono rounded-xl border"
           type="email"
@@ -49,7 +50,7 @@ const LoginPage = (props) => {
 
         <button
           class="bg-[#6F8F72] font-mono rounded-xl py-2 hover:scale-105 duration-300"
-          type="submit"
+          onClick={handleSubmit}
         >
           Login
         </button>
