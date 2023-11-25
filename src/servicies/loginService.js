@@ -1,11 +1,9 @@
 const setLocalStorage = async (token) => {
   await localStorage.setItem("token", token);
-  console.log('en la funcion cookie', token);
   console.log("local storage", localStorage.getItem('token'))
 }
 
 const loginService = (login) => {
-  console.log('--------', login);
   const requestOptions = {
     method: "POST",
     headers: {'Content-Type': 'application/json'},
@@ -21,9 +19,9 @@ const loginService = (login) => {
   })
   .then(data => {
         const newData = JSON.parse(data);
-        console.log("NewData", newData);
         console.log("NewData", newData.token);
         setLocalStorage(newData.token);
+        return data;
   })
 }
 
