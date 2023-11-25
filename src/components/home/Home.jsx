@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import NavBarComponent from '../navbar';
+import NavBarComponent from "../navbar";
+import AllUsers from "../allUsers";
 
 const Home = ({ title, subtitle, children, backgroundImage }) => {
   const navigate = useNavigate();
-  const [cookie, setCookie] = useState(localStorage.getItem('token') || null)
+  const [cookie, setCookie] = useState(localStorage.getItem("token") || null);
   // CUANDO SE CIERRA LA SESION??? por eso dejamo el setCookie
   // SesionStorage o LocalStorage ?????
   useEffect(() => {
-    if (cookie == '') {
+    if (cookie == "") {
       navigate("/login");
     }
-    console.log("local storage", localStorage.getItem('token'))
-  }, [cookie])
+    console.log("local storage", localStorage.getItem("token"));
+  }, [cookie]);
 
   return (
     <>
@@ -22,22 +23,24 @@ const Home = ({ title, subtitle, children, backgroundImage }) => {
           {/* login container */}
           <div className="md:w-1/2 px-12">
             <form className="flex flex-col gap-4">
-              <h2 className="font-mono text-2xl flex items-center justify-center">{title}</h2>
-              <h2 className="font-mono text-2xl flex items-center justify-center">{subtitle}</h2>
+              <h2 className="font-mono text-2xl flex items-center justify-center">
+                {title}
+              </h2>
+              <h2 className="font-mono text-2xl flex items-center justify-center">
+                {subtitle}
+              </h2>
               {/* Resto del formulario */}
               {children}
             </form>
-
           </div>
 
-          {/* image container */}
           <div className="md:block hidden w-1/2">
             <img className="rounded-2xl" src={backgroundImage} alt="" />
           </div>
         </div>
       </section>
     </>
-  )
+  );
 };
 
 export default Home;
