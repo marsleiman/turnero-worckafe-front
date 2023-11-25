@@ -1,19 +1,17 @@
-import "./Reserva.css";
-//import Reserva from "./Reserva";
-import Reserva from "./ReservaTest";
+import Reserva from "./Reserva";
 
-
-
-export default function ReservasList(props){
-    return (
-       <ul className="reservas-list">
-            {Reserva.map(reserva => {
-                return (
-                    <Reserva
-                        Id = {reserva.id}                     
-                    />
-                );
-            })}
-       </ul> 
-    );
+export default function ReservasList(props) {
+  return (
+    <ul className="reservas-list">
+      {props.Reserva.map((reserva) => {
+        return (
+          <Reserva
+            Id={reserva.room_id}
+            fecha={reserva.dia}
+            capacidad={reserva.capacity}
+          />
+        );
+      })}
+    </ul>
+  );
 }

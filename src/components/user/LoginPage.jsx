@@ -4,11 +4,11 @@ import Home from "../home/Home";
 import loginService from "../../servicies/loginService";
 import { useNavigate, Link } from "react-router-dom";
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   const navigate = useNavigate();
   const [login, setLogin] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const handleChange = (event) => {
@@ -16,20 +16,21 @@ const LoginPage = (props) => {
       ...prevProps,
       [event.target.name]: event.target.value,
     }));
-  }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('holaaaaaaaa');
+    console.log("holaaaaaaaa");
     await loginService(login);
     navigate("/login");
-  }
+  };
 
   return (
     <Home
       title="Bienvenido"
       subtitle="al work-café"
-      backgroundImage="/images/test.jpeg">
+      backgroundImage="/images/test.jpeg"
+    >
       <form class="flex flex-col gap-4">
         <input
           className="p-2 mt-8 font-mono rounded-xl border"

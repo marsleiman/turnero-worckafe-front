@@ -22,20 +22,23 @@ const RegisterPage = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('llega?????');
-    await registerService(register)
-      .then(() => {
-        let body = {
-          email: register.email,
-          password: register.password,
-        }
-        loginService(body);
-        navigate("/");
-      })
-  }
+    console.log("llega?????");
+    await registerService(register).then(() => {
+      let body = {
+        email: register.email,
+        password: register.password,
+      };
+      loginService(body);
+      navigate("/");
+    });
+  };
 
   return (
-    <Home>
+    <Home
+      title="Bienvenido"
+      subtitle="al work-café"
+      backgroundImage="/images/test.jpeg"
+    >
       <form class="flex flex-col gap-4">
         <input
           class="p-2 mt-8 font-mono rounded-xl border"
