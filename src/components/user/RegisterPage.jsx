@@ -1,12 +1,11 @@
 import { useState } from "react";
 import registerService from "../../servicies/registerService";
-import loginService from "../../servicies/loginService";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Card from "../card";
 import Spinner from "../spinner"
 
-const RegisterPage = (props) => {
+const RegisterPage = () => {
   const navigate = useNavigate();
   const [spinner, setSpinner] = useState(false);
   const [register, setRegister] = useState({
@@ -29,7 +28,7 @@ const RegisterPage = (props) => {
     setTimeout(() => navigate('/'), 10000);
   };
 
-  const ComponentSpinner = () =>(
+  const ComponentSpinner = () => (
     <>
       <Spinner />
       <span>El usuario se está creando, cuando terminos vas a poder loguearte</span>
@@ -69,15 +68,12 @@ const RegisterPage = (props) => {
                 onChange={(e) => handleChange(e)}
               />
             </form>
-            <Link to="/">
-              {" "}
-              <button
-                class="bg-[#6F8F72] font-mono flex items-center justify-center rounded-xl py-2 hover:scale-105 duration-300"
-                onClick={(e) => handleSubmit(e)}
-              >
-                Registrarme
-              </button>
-            </Link>
+            <button
+              class="bg-[#6F8F72] font-mono flex items-center justify-center rounded-xl py-2 hover:scale-105 duration-300"
+              onClick={(e) => handleSubmit(e)}
+            >
+              Registrarme
+            </button>
           </Card>
       }
     </>

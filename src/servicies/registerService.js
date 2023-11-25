@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 const registerService = async (register) => {
   console.log('--------', register);
   const requestOptions = {
