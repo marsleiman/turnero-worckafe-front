@@ -1,11 +1,10 @@
-import React from 'react'
-
 const setLocalStorage = async (token) => {
   await localStorage.setItem("token", token);
   console.log('en la funcion cookie', token);
+  console.log("local storage", localStorage.getItem('token'))
 }
 
-const loginService = async (login) => {
+const loginService = (login) => {
   console.log('--------', login);
   const requestOptions = {
     method: "POST",
@@ -25,7 +24,6 @@ const loginService = async (login) => {
         console.log("NewData", newData);
         console.log("NewData", newData.token);
         setLocalStorage(newData.token);
-        console.log("local storage", localStorage.getItem('token'))
   })
 }
 

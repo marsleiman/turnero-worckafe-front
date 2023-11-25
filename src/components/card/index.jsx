@@ -1,23 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import NavBarComponent from "../navbar";
-import AllUsers from "../allUsers";
+import React from "react";
 
-const Home = ({ title, subtitle, children, backgroundImage }) => {
-  const navigate = useNavigate();
-  const [cookie, setCookie] = useState(localStorage.getItem("token") || null);
-  // CUANDO SE CIERRA LA SESION??? por eso dejamo el setCookie
-  // SesionStorage o LocalStorage ?????
-  useEffect(() => {
-    if (cookie == "") {
-      navigate("/login");
-    }
-    console.log("local storage", localStorage.getItem("token"));
-  }, [cookie]);
+const Card = ({ title, subtitle, children, backgroundImage }) => {
 
   return (
     <>
-      <NavBarComponent />
       <section className="bg-[#fefae0] min-h-screen flex items-center justify-center">
         <div className="bg-[#79B473] flex rounded-2xl shadow-lg max-w-3xl p-5">
           {/* login container */}
@@ -43,4 +29,4 @@ const Home = ({ title, subtitle, children, backgroundImage }) => {
   );
 };
 
-export default Home;
+export default Card;

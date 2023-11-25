@@ -1,23 +1,23 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "../src/components/home/Home";
-import LoginPage from "./components/user/LoginPage";
-import RegisterPage from "./components/user/RegisterPage";
-import ReservasPage from "./components/reservas/ReservasPage";
-import AllUsers from "./components/allUsers";
+import Home from "./page/home";
+import Login from "./page/login";
+import AllBookings from "./page/all-bookings";
+import CreateBooking from "./page/create-booking";
+import DetailBooking from "./page/detail-booking";
+import BookingForUser from "./page/booking-for-user";
+import Register from "./page/register";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />} />  
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/listado-reservas/" element={<ReservasPage />} />
-        {
-          /*<Route path="/crear-reserva" element = { <CreateReserva />} />
-          <Route path="/reserva/:reserva_id" element = {<ReservaDetails />} />*/
-          <Route path="/register" element={<RegisterPage />} />
-        }
-        <Route path="/allUsers" element={<AllUsers />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/all-bookings" element={<AllBookings />} />
+        <Route path="/create-booking" element = { <CreateBooking />} />
+        <Route path="/booking-for-user" element = {<BookingForUser />} />
+        <Route path="/detail-booking" element = {<DetailBooking />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );

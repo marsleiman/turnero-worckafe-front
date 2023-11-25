@@ -1,15 +1,23 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useState } from "react";
-import Home from "../home/Home";
+import Card from "../card";
 import loginService from "../../servicies/loginService";
 import { useNavigate, Link } from "react-router-dom";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [cookie, setCookie] = useState(localStorage.getItem("token"));
   const [login, setLogin] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    console.log("cookie en loginPage", cookie);
+    if (cookie) {
+      navigate("/");
+    }
+  }, [cookie]);
 
   const handleChange = (event) => {
     setLogin((prevProps) => ({
@@ -26,7 +34,7 @@ const LoginPage = () => {
   };
 
   return (
-    <Home
+    <Card
       title="Bienvenido"
       subtitle="al work-café"
       backgroundImage="/images/test.jpeg"
@@ -70,7 +78,7 @@ const LoginPage = () => {
           <button>Registrarme</button>
         </Link>
       </div>
-    </Home>
+    </Card>
   );
 };
 
