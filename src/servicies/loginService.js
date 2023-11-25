@@ -1,6 +1,6 @@
 const setLocalStorage = async (token) => {
   await localStorage.setItem("token", token);
-  console.log("local storage", localStorage.getItem('token'))
+  console.log("login service local storage", localStorage.getItem('token'))
 }
 
 const loginService = (login) => {

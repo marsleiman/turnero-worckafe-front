@@ -3,12 +3,14 @@ import registerService from "../../servicies/registerService";
 import loginService from "../../servicies/loginService";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Home from "../home/Home";
+import Card from "../card";
+import Spinner from "../spinner"
 
 const RegisterPage = (props) => {
   const navigate = useNavigate();
+  const [spinner, setSpinner] = useState(false);
   const [register, setRegister] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
   });
@@ -22,59 +24,63 @@ const RegisterPage = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("llega?????");
-    await registerService(register).then(() => {
-      let body = {
-        email: register.email,
-        password: register.password,
-      };
-      loginService(body);
-      navigate("/");
-    });
+    await registerService(register);
+    setSpinner(true);
+    setTimeout(() => navigate('/'), 10000);
   };
 
-  return (
-    <Home
-      title="Bienvenido"
-      subtitle="al work-café"
-      backgroundImage="/images/test.jpeg"
-    >
-      <form class="flex flex-col gap-4">
-        <input
-          class="p-2 mt-8 font-mono rounded-xl border"
-          type="name"
-          name="name"
-          placeholder="Nombre"
-          value={register.name}
-          onChange={handleChange}
-        />
-        <input
-          className="p-2 mt-8 font-mono rounded-xl border"
-          type="email"
-          name="email"
-          placeholder="Email"
-          onChange={handleChange}
-        />
+  const ComponentSpinner = () =>(
+    <>
+      <Spinner />
+      <span>El usuario se está creando, cuando terminos vas a poder loguearte</span>
+    </>
+  )
 
-        <input
-          className="p-2 mt-5 font-mono rounded-xl border"
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={register.password}
-          onChange={handleChange}
-        />
-      </form>
-      <Link to="/">
-        {" "}
-        <button
-          class="bg-[#6F8F72] font-mono flex items-center justify-center rounded-xl py-2 hover:scale-105 duration-300"
-          onClick={handleSubmit}
-        >
-          Registrarme
-        </button>
-      </Link>
-    </Home>
+  return (
+    <>
+      {
+        spinner ? <ComponentSpinner /> :
+          <Card
+            title="Bienvenido"
+            subtitle="al work-café"
+            backgroundImage="/images/test.jpeg"
+          >
+            <form class="flex flex-col gap-4">
+              <input
+                class="p-2 mt-8 font-mono rounded-xl border"
+                type="name"
+                name="username"
+                placeholder="Nombre"
+                onChange={(e) => handleChange(e)}
+              />
+              <input
+                className="p-2 mt-8 font-mono rounded-xl border"
+                type="email"
+                name="email"
+                placeholder="Email"
+                onChange={(e) => handleChange(e)}
+              />
+
+              <input
+                className="p-2 mt-5 font-mono rounded-xl border"
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={(e) => handleChange(e)}
+              />
+            </form>
+            <Link to="/">
+              {" "}
+              <button
+                class="bg-[#6F8F72] font-mono flex items-center justify-center rounded-xl py-2 hover:scale-105 duration-300"
+                onClick={(e) => handleSubmit(e)}
+              >
+                Registrarme
+              </button>
+            </Link>
+          </Card>
+      }
+    </>
   );
 };
 
