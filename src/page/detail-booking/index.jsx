@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function DetailBooking() {
+export default function DetailBooking({id}) {
   return (
-    <div>index</div>
+    <div>hola</div>
   )
 }
