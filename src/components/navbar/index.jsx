@@ -1,17 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 const NavBarComponent = () => {
   const navigate = useNavigate();
-  const [cookie, setCookie] = useState(localStorage.getItem("token") || null);
-  // CUANDO SE CIERRA LA SESION??? por eso dejamo el setCookie
-  // SesionStorage o LocalStorage ?????
-  useEffect(() => {
-    if (cookie == "") {
-      navigate("/login");
-    }
-    console.log("local storage", localStorage.getItem("token"));
-  }, [cookie]);
+  const [, setCookie] = useState(localStorage.getItem("token") || null);
 
   const handleCloseSesion = () => {
     localStorage.removeItem("token");

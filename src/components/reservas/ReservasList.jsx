@@ -1,15 +1,15 @@
-import Reserva from "./Reserva";
+import React from "react";
+import { Link } from "react-router-dom";
 
 export default function ReservasList(props) {
+  console.log(props);
   return (
     <ul className="reservas-list">
-      {props.Reserva.map((reserva) => {
+      {props.bookings.map((reserva) => {
         return (
-          <Reserva
-            Id={reserva.room_id}
-            fecha={reserva.dia}
-            capacidad={reserva.capacity}
-          />
+          <Link to="/deatil">
+            Reserva día: {reserva.dia}
+          </Link>
         );
       })}
     </ul>
