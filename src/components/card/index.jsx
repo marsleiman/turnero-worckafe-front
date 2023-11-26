@@ -4,7 +4,7 @@ const Card = ({ title, subtitle, children, backgroundImage }) => {
   return (
     <>
       <section className="bg-[#fefae0] min-h-screen flex items-center justify-center">
-        <div className="bg-[#79B473] flex rounded-2xl shadow-lg max-w-3xl p-5 overflow-y-scroll">
+        <div className="bg-[#79B473] flex rounded-2xl shadow-lg max-w-3xl p-5">
           {/* login container */}
           <div className="md:w-1/2 px-12">
             <form className="flex flex-col gap-4">

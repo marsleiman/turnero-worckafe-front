@@ -4,7 +4,6 @@ import Login from "./page/login";
 import AllBookings from "./page/all-bookings";
 import CreateBooking from "./page/create-booking";
 import DetailBooking from "./page/detail-booking";
-import BookingForUser from "./page/booking-for-user";
 import Register from "./page/register";
 
 function App() {
@@ -15,9 +14,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/all-bookings" element={<AllBookings />} />
-        <Route path="/create-booking" element = { <CreateBooking />} />
-        <Route path="/booking-for-user" element = {<BookingForUser />} />
-        <Route path="/detail-booking" element = {<DetailBooking />} />
+        <Route path="/create-booking" element={<CreateBooking />} />
+        <Route path="/detail-booking" element={<DetailBooking />} />
       </Routes>
     </BrowserRouter>
   );
