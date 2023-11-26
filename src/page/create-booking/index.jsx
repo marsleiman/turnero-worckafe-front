@@ -1,8 +1,6 @@
 import { useState } from "react";
-import createBooking from "../../servicies/createBookingService";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/card";
-//import Spinner from "../spinner"
 
 export default function CreateBooking() {
   const navigate = useNavigate();
@@ -22,9 +20,33 @@ export default function CreateBooking() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await createBooking(booking);
+
+    const requestOptions = {
+      method: "POST",
+      headers: {
+          'Content-Type': 'application/json',
+          'token': localStorage.getItem("token")
+      },
+      body: JSON.stringify(booking)
+    }
+
+    const response = await fetch("http://localhost:4000/api/bookings/create", requestOptions)
+      .then(response => {
+          console.log(response);
+          return response.text();
+      })
+      .then(data => {
+          console.log("data", data);
+          const newData = JSON.parse(data);
+          return newData;
+      })
+    
     setSpinner(true);
-    //setTimeout(() => navigate('/'), 10000);
+    console.log('EN EL FRONT ', response, response.insertedId);
+    const id = response.insertedId;
+    const url = `/detail-booking?id=${id}`;
+    console.log('EN EL url ', url);
+    setTimeout(() => navigate(`/detail-booking?id=${id}`), 5000);
   };
 
   return (

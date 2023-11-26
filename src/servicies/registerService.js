@@ -16,7 +16,7 @@ const registerService = async (register) => {
   .then(data => {
         const newData = JSON.parse(data);
         console.log("NewData", newData);
-        
+        return newData;
   })
 }
 

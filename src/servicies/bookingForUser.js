@@ -1,5 +1,4 @@
-const detailBooking = async (id) => {
-    console.log('--------', id);
+const bookingForUser = async () => {
     const requestOptions = {
         method: "GET",
         headers: {
@@ -7,7 +6,7 @@ const detailBooking = async (id) => {
             'token': localStorage.getItem("token")
         },
     }
-    return fetch(`http://localhost:4000/api/bookings/find/${id}`, requestOptions)
+    return fetch(`http://localhost:4000/api/bookings/find-for-user`, requestOptions)
         .then(response => {
             console.log(response);
             return response.json();
@@ -18,4 +17,4 @@ const detailBooking = async (id) => {
         })
 }
 
-export default detailBooking;
+export default bookingForUser;
