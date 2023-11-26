@@ -63,7 +63,6 @@ export default function Home() {
         ) : (
           <>
             <ReservasList bookings={bookings} />
-
             <Link to="/create-booking">
               {" "}
               <button className="bg-[#6F8F72] font-mono rounded-xl py-2 hover:scale-105 duration-300">
