@@ -21,7 +21,7 @@ const loginService = (login) => {
         const newData = JSON.parse(data);
         console.log("NewData", newData.token);
         setLocalStorage(newData.token);
-        return data;
+        return newData.token;
   })
 }
 
