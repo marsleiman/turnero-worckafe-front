@@ -1,57 +1,79 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import NavBarComponent from "../../components/navbar";
-import ReservasList from "../../components/reservas/ReservasList"
-
+import ReservasList from "../../components/reservas/ReservasList";
+import Card from "../../components/card";
+import Spinner from "../../components/spinner";
 export default function Home() {
   const navigate = useNavigate();
   const [bookings, setBookings] = useState({});
   const [spiner, setSpiner] = useState(true);
 
-
   const callBookings = async () => {
     const requestOptions = {
       method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        'token': localStorage.getItem("token")
+        "Content-Type": "application/json",
+        token: localStorage.getItem("token"),
       },
-    }
+    };
 
-    await fetch("http://localhost:4000/api/bookings/find-for-user", requestOptions)
-      .then(response => {
+    await fetch(
+      "http://localhost:4000/api/bookings/find-for-user",
+      requestOptions
+    )
+      .then((response) => {
         console.log(response);
         return response.text();
       })
-      .then(data => {
+      .then((data) => {
         console.log("data", data);
         const newData = JSON.parse(data);
         setBookings(newData);
         return newData;
-      })
-  }
+      });
+  };
 
   useEffect(() => {
     console.log(localStorage.getItem("token"));
     if (!localStorage.getItem("token")) {
-      navigate('/login')
+      navigate("/login");
     } else {
       callBookings();
-      console.log('HOLAAAAAA', bookings)
+      console.log("HOLAAAAAA", bookings);
       setTimeout(() => setSpiner(false), 10000);
     }
   }, []);
 
-
   return (
     <>
-      {spiner ? <span>cargando</span> :
-        (<>
-          <NavBarComponent />
-          <h1>Bienvenido!</h1>
-          <h3>Esta es tu lista de reservas:</h3>
-          <ReservasList bookings={bookings} />
-          <Link to="/create-booking">Crear Reserva</Link></>)}
+      <NavBarComponent />
+
+      <Card
+        title="Bienvenido!"
+        subtitle="Esta es tu lista de reservas"
+        backgroundImage="/images/test2.jpeg"
+      >
+        {spiner ? (
+          <>
+            <span className="font-mono text-md flex items-center justify-center">
+              cargando
+            </span>
+            <Spinner className />
+          </>
+        ) : (
+          <>
+            <ReservasList bookings={bookings} />
+
+            <Link to="/create-booking">
+              {" "}
+              <button className="bg-[#6F8F72] font-mono rounded-xl py-2 hover:scale-105 duration-300">
+                Crear Reserva{" "}
+              </button>
+            </Link>
+          </>
+        )}
+      </Card>
     </>
-  )
+  );
 }
