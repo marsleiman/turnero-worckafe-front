@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 import detailBooking from "../../servicies/detailBooking";
 import Spinner from "../../components/spinner";
 import ComponentDetail from "../../components/detail";
+import Card from "../../components/card";
+import NavBarComponent from "../../components/navbar";
 
 export default function DetailBooking() {
   const [spinner, setSpinner] = useState(true);
@@ -27,9 +29,21 @@ export default function DetailBooking() {
 
   function CheckExist() {
     if (!detail) {
-      return <span>No existe la reserva :s</span>;
+      return <span>Reserva no encontrada</span>;
     } else {
-      return <ComponentDetail detail={detail} />;
+      return (
+        <>
+          <NavBarComponent />
+
+          <>
+            <Card title="Tu reserva" backgroundImage="images/login2.jpg">
+              <div className="font-mono text-lg flex-col items-center justify-center py-16">
+                <ComponentDetail detail={detail} />
+              </div>
+            </Card>
+          </>
+        </>
+      );
     }
   }
 
