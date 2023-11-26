@@ -47,7 +47,6 @@ export default function Home() {
   return (
     <>
       <NavBarComponent />
-
       <Card
         title="Bienvenido!"
         subtitle="Esta es tu lista de reservas"
