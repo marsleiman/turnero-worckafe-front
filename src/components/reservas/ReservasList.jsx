@@ -8,11 +8,8 @@ export default function ReservasList(props) {
       {props.bookings.map((reserva) => {
         return (
           <div className="overflow-y-scroll font-mono text-md flex flex-col items-center gap-4 mt-4 py-2 bg-[#fefae0] rounded ">
-            {reserva.dia}
-            <Link to="/detail-booking">
-              <button className="bg-gray-500 overflow-y-scroll">
-                <span>Ver detalles</span>
-              </button>
+            <Link to={`/detail-booking?id=${reserva._id}`}>
+              Reserva día: {reserva.dia}
             </Link>
           </div>
         );

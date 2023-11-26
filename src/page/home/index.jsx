@@ -40,7 +40,6 @@ export default function Home() {
       navigate("/login");
     } else {
       callBookings();
-      console.log("HOLAAAAAA", bookings);
       setTimeout(() => setSpiner(false), 10000);
     }
   }, []);
