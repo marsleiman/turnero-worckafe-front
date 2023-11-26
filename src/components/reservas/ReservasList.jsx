@@ -6,7 +6,7 @@ export default function ReservasList(props) {
     <ul className="reservas-list">
       {props.bookings.map((reserva) => {
         return (
-          <li className="overflow-y-scroll font-mono text-md flex flex-col items-center gap-4 mt-4 py-2 bg-[#fefae0] rounded ">
+          <li className="font-mono text-md flex flex-col items-center gap-4 mt-4 py-2 bg-[#fefae0] rounded ">
             <Link to={`/detail-booking?id=${reserva._id}`}>
               Reserva día: {reserva.dia}
             </Link>
