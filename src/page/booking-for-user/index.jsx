@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import detailBooking from "../../servicies/detailBooking";
 import Spinner from "../../components/spinner"
 
 export default function BookingForUser() {
   const [spinner, setSpinner] = useState(true);
   const [bookings, setBookings] = useState({});
   const [compBookings, setCompBookings] = useState(false);
-  const search = useLocation().search
-  const searchParams = new URLSearchParams(search)
  
   const callBookings = async () => {
     const requestOptions = {
@@ -19,7 +15,7 @@ export default function BookingForUser() {
       },
     }
 
-    const response = await fetch("http://localhost:4000/api/bookings/find-for-user", requestOptions)
+      await fetch("http://localhost:4000/api/bookings/find-for-user", requestOptions)
       .then(response => {
           console.log(response);
           return response.text();
