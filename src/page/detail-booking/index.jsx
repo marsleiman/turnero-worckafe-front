@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import detailBooking from "../../servicies/detailBooking";
 import Spinner from "../../components/spinner"
+import ComponentDetail from "../../components/detail"
 
 export default function DetailBooking() {
   const [spinner, setSpinner] = useState(true);
@@ -13,27 +14,32 @@ export default function DetailBooking() {
   useEffect(() => {
     const call = async () => {
       const respo = await detailBooking(searchParams.get('id'));
-      await console.log('respo', respo);
-      await setDetail(respo)
+      console.log('respo', respo);
+      setDetail(respo)
     } 
     
-    call();
+    try {
+      call();
+    } catch {
+      setDetail(null)
+    }
     setSpinner(false);
   }, [])
 
   console.log(':(', detail);
 
-  const componentDetail = (
-    <>
-      <span>{detail.dia}</span>
-      <span>{detail.room_id}</span>
-      <span>{detail.capacity}</span>
-    </>
-  )
+
+  function CheckExist() {
+    if (!detail) {
+      return <span>No existe la reserva :s</span>
+    } else {
+      return <ComponentDetail detail={detail} />
+    }
+  }
 
   return (
     <>
-      {spinner ? <Spinner /> : componentDetail}
+      {spinner ? <Spinner /> : <CheckExist />}
     </>
   )
 }

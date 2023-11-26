@@ -7,7 +7,7 @@ export default function ReservasList(props) {
      <ul className="reservas-list">
        {props.bookings.map((reserva) => {
          return (
-           <Link to="/deatil">
+           <Link to={`/detail-booking?id=${reserva._id}`}>
              Reserva día: {reserva.dia}
            </Link>
          );

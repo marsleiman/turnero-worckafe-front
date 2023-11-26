@@ -12,6 +12,9 @@ const detailBooking = async (id) => {
             console.log(response);
             return response.json();
         })
+        .catch((error) => {
+            console.error("función enRechazo invocada: ", error);
+          })
         .then(data => {
             console.log("myBooking", data);
             return data;
